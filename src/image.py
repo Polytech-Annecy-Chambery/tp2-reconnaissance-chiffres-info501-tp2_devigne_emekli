@@ -104,12 +104,31 @@ class Image:
     # Methode de redimensionnement d'image
     #==============================================================================
     def resize(self, new_H, new_W):
-        pass
+        im_resized = Image()
+        im_resized.H = new_H
+        im_resized.W = new_W
+        im_resized.pixels = resize(self.pixels, (new_H,new_W), 0)
+        im_resized.pixels = np.uint8(im_resized.pixels*255)
+        return im_resized
+        
+    
+
 
 
     #==============================================================================
     # Methode de mesure de similitude entre l'image self et un modele im
     #==============================================================================
     def similitude(self, im):
-        pass
-
+        im_bin = self.binarisation(127)
+        nb_similitude = 0
+        nb_pixels = 0
+        res = 0
+        self.resize(60, 60)
+        im.resize(60, 60)
+        for i in range (im_bin.H):
+            for j in range (im_bin.W):
+                if self.pixels[i][j] == im.pixels[i][j] :
+                    nb_similitude = nb_similitude+1
+                nb_pixels = nb_pixels+1
+        res = nb_similitude / nb_pixels             
+        return res
