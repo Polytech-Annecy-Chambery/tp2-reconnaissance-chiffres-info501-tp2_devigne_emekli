@@ -21,5 +21,4 @@ def reconnaissance_chiffre(image, liste_modeles, S):
         similitude = im_loc.similitude(liste_modeles[i])
         if similitude > similitude_max:
             res = i
-     
     return res
