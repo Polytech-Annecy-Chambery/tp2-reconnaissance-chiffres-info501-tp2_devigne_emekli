@@ -8,7 +8,7 @@ class Image:
         """Initialisation d'une image composee d'un tableau numpy 2D vide
         (pixels) et de 2 dimensions (H = height et W = width) mises a 0
         """
-        self.pixels = None
+        self.pixels = []
         self.H = 0
         self.W = 0
     
