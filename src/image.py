@@ -46,8 +46,26 @@ class Image:
     #   S : le seuil de binarisation
     #   on retourne une nouvelle image binarisee
     #==============================================================================
+    
     def binarisation(self, S):
-        pass
+		# creation d'une image vide
+        im_bin = Image()
+        
+        # affectation a l'image im_bin d'un tableau de pixels de meme taille
+        # que self dont les intensites, de type uint8 (8bits non signes),
+        # sont mises a 0
+        im_bin.set_pixels(np.zeros((self.H, self.W), dtype=np.uint8))
+
+        # TODO: boucle imbriquees pour parcourir tous les pixels de l'image im_bin
+        # et calculer l'image binaire
+        for i in range(self.H):
+            for j in range(self.W):
+                if self.pixels[i,j] >= S:
+                    im_bin.pixels[i,j] = 255
+                else:
+                    im_bin.pixels[i,j] = 0
+        
+        return im_bin
 
 
     #==============================================================================
@@ -59,7 +77,28 @@ class Image:
     #   on retourne une nouvelle image recadree
     #==============================================================================
     def localisation(self):
-        pass
+        
+        cmin = self.W
+        cmax = 0
+        lmin = self.H
+        lmax = 0
+
+        for i in range (self.H):
+            for j in range (self.W):
+                if self.pixels[i,j] == 0:
+                    if i <= lmin:
+                        lmin = i
+                    if i >= lmax:
+                        lmax = i
+                    if j <= cmin:
+                        cmin = j
+                    if j >= cmax:
+                        cmax = j
+        img=self.pixels[lmin:lmax+1,cmin:cmax+1]
+        imagette = Image()
+        imagette.set_pixels(img)
+        return imagette
+    
 
     #==============================================================================
     # Methode de redimensionnement d'image
