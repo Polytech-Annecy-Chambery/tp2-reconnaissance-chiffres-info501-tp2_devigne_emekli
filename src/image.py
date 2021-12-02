@@ -132,3 +132,5 @@ class Image:
                 nb_pixels = nb_pixels+1
         res = nb_similitude / nb_pixels             
         return res
+    
+    
