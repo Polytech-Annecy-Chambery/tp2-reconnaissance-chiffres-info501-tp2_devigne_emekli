@@ -8,7 +8,7 @@ class Image:
         """Initialisation d'une image composee d'un tableau numpy 2D vide
         (pixels) et de 2 dimensions (H = height et W = width) mises a 0
         """
-        self.pixels = []
+        self.pixels = None
         self.H = 0
         self.W = 0
     
@@ -58,8 +58,8 @@ class Image:
 
         # TODO: boucle imbriquees pour parcourir tous les pixels de l'image im_bin
         # et calculer l'image binaire
-        for i in range(0,self.H):
-            for j in range(0,self.W):
+        for i in range(self.H):
+            for j in range(self.W):
                 if self.pixels[i][j] >= S:
                     im_bin.pixels[i][j] = 255
                 else:
@@ -83,8 +83,8 @@ class Image:
         lmin = self.H
         lmax = 0
         binarisee = self.binarisation(128)
-        for i in range (0,binarisee.H):
-            for j in range (0,binarisee.W):
+        for i in range (binarisee.H):
+            for j in range (binarisee.W):
                 if binarisee.pixels[i][j] == 0:
                     if i < lmin:
                         lmin = i
